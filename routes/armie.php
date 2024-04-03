@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Act2Controller;
+use App\Http\Controllers\PostController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
@@ -158,9 +160,17 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 // });
 // });
-route('student.profile');
-Route::name('student.')->group(function(){
-   Route::get('/user/{id}/profile',function(Request $request){
+// route('student.profile');
+// Route::name('student.')->group(function(){
+//    Route::get('/user/{id}/profile',function(Request $request){
 
-}); 
-})->name('profile');
+// }); 
+// })->name('profile');
+
+Route::middleware('extract.token')->group(function(){
+ Route::get('/users',[Act2Controller::class,'index']);
+ Route::post('/post',[PostController::class,'store']);
+ Route::put('/put/{id}',[PostController::class,'update']);
+  Route::patch('/users/{user}',[Act2Controller::class,'update']);
+  Route::delete('/users/{id}',[PostController::class,'destroy']);
+});
