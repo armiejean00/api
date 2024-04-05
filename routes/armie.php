@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ProductController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
@@ -158,9 +159,21 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 // });
 // });
-route('student.profile');
-Route::name('student.')->group(function(){
-   Route::get('/user/{id}/profile',function(Request $request){
+// route('student.profile');
+// Route::name('student.')->group(function(){
+//    Route::get('/user/{id}/profile',function(Request $request){
 
-}); 
-})->name('profile');
+// }); 
+// })->name('profile');
+
+
+
+
+
+
+Route::apiResource('products',ProductController::class);
+// Route::get('/products',[ProductController::class,'index']);
+// Route::post('/products',[ProductController::class,'store']);
+// Route::get('/products/{product}',[ProductController::class,'show']);
+// Route::put('/products/{product}',[ProductController::class,'update']);
+// Route::delete('/products/{product}',[ProductController::class,'destroy']);
